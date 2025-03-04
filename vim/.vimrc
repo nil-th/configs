@@ -17,9 +17,9 @@ set laststatus=2
 set ruler
 
 " Color Scheme
-color zellner 
+color wildcharm 
 
-set bg=light
+set bg=dark
 
 " Shows a menu when using tab completion
 set wildmenu
@@ -31,24 +31,16 @@ set lbr
 set ai
 set si
 
-" Auto Closing Bracket
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
 " Tab spaces
 set tabstop=2
 set shiftwidth=2
+
+" Fonts
+set guifont=ProFont_IIx_Nerd_Font_Mono:h12:b:cANSI:qDRAFT
+syntax on
 
 " Call the .vimrc.plug 
 if filereadable(expand("~/.vimrc.plug"))
     source ~/.vimrc.plug
 endif 
-
-
-
 
