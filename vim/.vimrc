@@ -35,6 +35,12 @@ set si
 set tabstop=2
 set shiftwidth=2
 
+" Auto Closing Curly Braces
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+
 " Fonts
 set guifont=ProFont_IIx_Nerd_Font_Mono:h12:b:cANSI:qDRAFT
 syntax on
