@@ -17,7 +17,7 @@ set laststatus=2
 set ruler
 
 " Color Scheme
-color wildcharm 
+color industry 
 
 set bg=dark
 
@@ -36,10 +36,11 @@ set tabstop=2
 set shiftwidth=2
 
 " Auto Closing Curly Braces
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
+imap {<tab> {}<Left>
+imap {<CR> {<CR>}<ESC>O
+imap {;<CR> {<CR>};<ESC>O
 
+set clipboard=unnamedplus
 
 " Fonts
 set guifont=ProFont_IIx_Nerd_Font_Mono:h12:b:cANSI:qDRAFT
