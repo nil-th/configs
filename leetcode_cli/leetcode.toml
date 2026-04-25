@@ -1,0 +1,14 @@
+[cookies]
+site = "leetcode.com"
+csrf = ""
+session = ""
+
+[code]
+lang = "cpp"
+editor = "vim"
+
+[storage]
+scripts = "scripts"
+root = "~/.leetcode"
+code = "code"
+cache = "cahce"
