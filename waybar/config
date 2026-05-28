@@ -1,0 +1,56 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "modules-left": ["sway/workspaces", "custom-scratchpad-indicator", "custom-playerctl"],
+    "modules-center": ["clock#time", "clock#date"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "tray"],
+
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": " {name} ",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": []
+        }
+    },
+
+    "clock#time": {
+        "format": " {:%H:%M} "
+    },
+    "clock#date": {
+        "format": " {:%a, %b %d} "
+    },
+    "pulseaudio": {
+        "format": " Vol: {volume}% ",
+        "format-muted": " Muted "
+    },
+    "network": {
+        "format-wifi": " {essid} ",
+        "format-disconnected": " Disconnected "
+    },
+    "cpu": {
+        "format": " CPU: {usage}% "
+    },
+    "memory": {
+        "format": " Mem: {percentage}% "
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C "
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": " Bat: {capacity}% ",
+        "format-charging": " ⚡ {capacity}% ",
+        "format-plugged": " Power On: {capacity}% ",
+        "format-alt": " Time: {time} "
+    }
+}
+
