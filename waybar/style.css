@@ -1,0 +1,135 @@
+/* =============================================================================
+ * GRUVBOX COLOR PALETTE
+ * ========================================================================== */
+@define-color bg_dark      #1d2021;
+@define-color bg          #282828;
+@define-color bg_alt      #3c3836;
+@define-color fg          #ebdbb2;
+@define-color fg_faded    #a89984;
+
+/* Gruvbox Bright Accents */
+@define-color red         #fb4934;
+@define-color green       #b8bb26;
+@define-color yellow      #fabd2f;
+@define-color light_yellow #fbf1c7;
+@define-color blue        #83a598;
+@define-color magenta     #d3869b;
+@define-color aqua        #8ec07c;
+@define-color orange      #fe8019;
+
+/* =============================================================================
+ * BASE STYLES & ANIMATIONS
+ * ========================================================================== */
+@keyframes blink-warning {
+    70% { color: @bg_dark; }
+    to { color: @bg_dark; background-color: @orange; }
+}
+
+@keyframes blink-critical {
+    70% { color: @bg_dark; }
+    to { color: @fg; background-color: @red; }
+}
+
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "ProFont IIx Nerd Font Mono", "monospace";
+    font-size: 13pt;
+    font-weight: bold;
+    min-height: 0;
+}
+
+#waybar {
+    background: @bg;
+    color: @fg;
+}
+
+/* Common module structure */
+#battery, #clock, #cpu, #custom-layout, #memory, #mode, #network, 
+#pulseaudio, #temperature, #custom-alsa, #custom-pacman, #custom-weather, 
+#custom-gpu, #custom-playerctl, #tray, #backlight, #language, 
+#custom-cpugovernor, #custom-scratchpad-indicator, #idle_inhibitor, #bluetooth {
+    padding: 0.2em 0.8em;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+/* =============================================================================
+ * WORKSPACES (The requested Workspace Bar)
+ * ========================================================================== */
+#workspaces {
+    background-color: transparent;
+    padding: 0;
+}
+
+#workspaces button {
+    background: @bg_alt;
+    color: @fg_faded;
+    padding: 0.2em 0.8em;
+    margin: 4px 2px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Focused / Active Workspace -> Very Light Yellow */
+#workspaces button.focused {
+    background-color: @light_yellow;
+    color: @bg_dark;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+    color: @bg_dark;
+}
+
+#workspaces button:hover {
+    background-color: @blue;
+    color: @bg_dark;
+}
+
+/* =============================================================================
+ * MODULE COLOR ASSIGNMENTS
+ * ========================================================================== */
+/* Left Side */
+#custom-pacman { background: @aqua; color: @bg_dark; }
+#custom-scratchpad-indicator { background: @magenta; color: @bg_dark; }
+#custom-playerctl { color: @fg; background: transparent; }
+#custom-playerctl.paused { color: @fg_faded; }
+
+/* Center Clocks */
+#clock.time { background: @light_yellow; color: @bg_dark; }
+#clock.date { background: @bg_alt; color: @fg; }
+
+/* Right Side Cluster */
+#pulseaudio { background: @blue; color: @bg_dark; }
+#pulseaudio.muted { background: @bg_alt; color: @red; }
+
+#network { background: @bg_alt; color: @fg_faded; }
+#network.disconnected { background: @red; color: @bg_dark; }
+
+#cpu { background: @orange; color: @bg_dark; }
+#memory { background: @yellow; color: @bg_dark; }
+#temperature { background: @aqua; color: @bg_dark; }
+#battery { background: @green; color: @bg_dark; }
+#tray { background: @bg_alt; color: @fg; }
+
+/* Hardware States & Animations */
+#memory.critical, #cpu.critical, #temperature.critical, #battery.critical {
+    background: @red;
+    color: @bg_dark;
+}
+#memory.warning, #cpu.warning, #temperature.warning, #battery.warning {
+    background: @orange;
+    color: @bg_dark;
+}
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
