@@ -1,0 +1,35 @@
+# Alacritty Configuration File
+
+[general]
+# Imports the color scheme (equivalent to include current-theme.conf)
+# Make sure you have a theme file in the same directory or provide the full path
+import = ["./current-theme.toml"]
+
+[font]
+size = 18.0
+
+[font.normal]
+family = "ProFont IIx Nerd Font Mono"
+style = "Bold"
+
+[font.bold]
+family = "ProFont IIx Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "ProFont IIx Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "ProFont IIx Nerd Font Mono"
+style = "Bold Italic"
+
+[window]
+# padding_width 10 from Kitty maps to x and y offsets
+padding = { x = 15, y = 15 }
+
+# To enable opacity, uncomment the line below:
+# opacity = 0.90
+
+# Note: Alacritty doesn't use "window_padding_width" globally; 
+# it applies to both sides (x) and top/bottom (y).
