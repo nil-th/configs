@@ -1,54 +1,67 @@
-/* Gruvbox Palette */
-@define-color bg0 #282828;
-@define-color bg1 #3c3836;
-@define-color fg0 #fbf1c7;
-@define-color fg1 #ebdbb2;
-@define-color aqua #689d6a;
-@define-color orange #d65d0e;
-@define-color yellow #d79921;
+/* =============================================================================
+ * WOFI CYBERPUNK HUD STYLE SHEET
+ * ========================================================================== */
 
-* {
-    /* Updated to ProFont */
-    font-family: "ProFont IIx", "ProFontWindows Nerd Font", monospace;
-    font-size: 18px;
-    transition: none; /* Instant feedback for that retro feel */
-}
-
+/* The main window wrapper */
 window {
     margin: 0px;
-    border: 2px solid @orange;
-    background-color: @bg0;
+    font-family: "Hurmit Nerd Font Mono", "Hermit Nerd Font", "monospace";
+    font-size: 13pt;
+    font-weight: bold;
+    background-color: rgba(18, 18, 18, 0.92); /* Semi-transparent black glass */
+    color: #c1c1c1; /* base05 */
+    border: 2px solid #333333; /* base03 Frame */
 }
 
+/* Inner container holding all elements */
 #outer-box {
-    margin: 4px;
-    background-color: @bg0;
+    margin: 10px;
+    padding: 10px;
+    background-color: transparent;
 }
 
+/* Search input field */
 #input {
-    margin: 4px;
-    padding: 4px;
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    border-radius: 0px;
     border: none;
-    color: @fg0;
-    background-color: @bg1;
-    /* Aqua accent for the search bar */
-    border-bottom: 2px solid @aqua;
+    border-bottom: 2px solid #5f8787; /* base08 Steel Accent */
+    background-color: #121212; /* base01 Dark Underlay */
+    color: #c1c1c1; /* base05 */
 }
 
-#inner-box {
-    margin: 4px;
-    background-color: @bg0;
+#input:focus {
+    border-bottom: 2px solid #c1c1c1; /* Glows silver-white when typing */
 }
 
+/* Scrollable container for the list items */
+#scroll {
+    margin-top: 5px;
+    background-color: transparent;
+}
+
+/* Individual rows/items in the list */
 #text {
-    margin: 3px;
-    color: @fg1;
+    margin: 3px 0px;
+    padding: 5px 10px;
+    color: #999999; /* base04 Muted Data Text by default */
 }
 
+/* Currently hovered or selected item */
 #entry:selected {
-    background-color: @bg1;
+    background-color: #c1c1c1; /* base05 Inverted Background */
 }
 
-#text:selected {
-    color: @yellow;
+#entry:selected #text {
+    color: #000000; /* base00 Crisp Black Text on Selection */
+}
+
+/* Subtle indicator for matching text while searching */
+#unselected * {
+    color: #999999;
+}
+
+#selected * {
+    color: #000000;
 }
