@@ -1,0 +1,30 @@
+# Normal colors
+[colors.normal]
+black   = '#000000' # base00
+red     = '#5f8787' # base08
+green   = '#dd9999' # base0B
+yellow  = '#a06666' # base0A
+blue    = '#888888' # base0D
+magenta = '#999999' # base0E
+cyan    = '#aaaaaa' # base0C
+white   = '#c1c1c1' # base05
+
+# Bright colors
+[colors.bright]
+black   = '#333333' # base03
+red     = '#5f8787' # base08
+green   = '#dd9999' # base0B
+yellow  = '#a06666' # base0A
+blue    = '#888888' # base0D
+magenta = '#999999' # base0E
+cyan    = '#aaaaaa' # base0C
+white   = '#c1c1c1' # base07
+
+# Cursor and Selection overrides
+[colors.cursor]
+text   = '#000000' # base00
+cursor = '#c1c1c1' # base05
+
+[colors.selection]
+text       = '#c1c1c1' # base05
+background = '#222222' # base02
