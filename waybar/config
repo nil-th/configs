@@ -18,39 +18,57 @@
         }
     },
 
+    // --- Custom Modules ---
+    "custom-scratchpad-indicator": {
+        "interval": 3,
+        "return-type": "json",
+        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '(recurse(.nodes[]) | select(.name == \"__i3_scratch\") | .focus[-1]) as $id | [recurse(.nodes[], .floating_nodes[]) | select(.id == $id)] | length'",
+        "format": " PKG: {} ",
+        "tooltip": false
+    },
+    "custom-playerctl": {
+        "format": " 👁  {} ",
+        "return-type": "json",
+        "max-length": 40,
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}} : {{status}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+
+    // --- Core Modules (Refactored for Minimalist Vibe) ---
     "clock#time": {
         "format": " {:%H:%M} "
     },
     "clock#date": {
-        "format": " {:%a, %b %d} "
+        "format": " {:%Y.%m.%d} " // Switched to dot-notated data string
     },
     "pulseaudio": {
-        "format": " Vol: {volume}% ",
-        "format-muted": " Muted "
+        "format": " VOL // {volume}% ",
+        "format-muted": " VOL // MUTE "
     },
     "network": {
-        "format-wifi": " {essid} ",
-        "format-disconnected": " Disconnected "
+        "format-wifi": " NET // {essid} ",
+        "format-disconnected": " NET // DOWN "
     },
     "cpu": {
-        "format": " CPU: {usage}% "
+        "format": " CPU // {usage}% "
     },
     "memory": {
-        "format": " Mem: {percentage}% "
+        "format": " MEM // {percentage}% "
     },
     "temperature": {
         "critical-threshold": 80,
-        "format": " {temperatureC}°C "
+        "format": " TMP // {temperatureC}°C "
     },
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
-        "format": " Bat: {capacity}% ",
-        "format-charging": " ⚡ {capacity}% ",
-        "format-plugged": " Power On: {capacity}% ",
-        "format-alt": " Time: {time} "
+        "format": " SYS // {capacity}% ",
+        "format-charging": " CHG // {capacity}% ",
+        "format-plugged": " AC // {capacity}% ",
+        "format-alt": " REM // {time} "
     }
 }
-
