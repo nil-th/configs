@@ -1,135 +1,145 @@
 /* =============================================================================
- * GRUVBOX COLOR PALETTE
+ * CHROME & MONOCHROME CYBERPUNK PALETTE
  * ========================================================================== */
-@define-color bg_dark      #1d2021;
-@define-color bg          #282828;
-@define-color bg_alt      #3c3836;
-@define-color fg          #ebdbb2;
-@define-color fg_faded    #a89984;
-
-/* Gruvbox Bright Accents */
-@define-color red         #fb4934;
-@define-color green       #b8bb26;
-@define-color yellow      #fabd2f;
-@define-color light_yellow #fbf1c7;
-@define-color blue        #83a598;
-@define-color magenta     #d3869b;
-@define-color aqua        #8ec07c;
-@define-color orange      #fe8019;
+@define-color base00      #000000; /* Pure Void Black */
+@define-color base01      #121212; /* Dark Underlay */
+@define-color base02      #222222; /* Structural Charcoal */
+@define-color base03      #333333; /* Accent Frame */
+@define-color base04      #999999; /* Muted Data Text */
+@define-color base05      #c1c1c1; /* Core High-Contrast Text */
+@define-color base08      #5f8787; /* Muted Sage Steel */
+@define-color base0A      #a06666; /* Terracotta Alert */
+@define-color base0B      #dd9999; /* Pale Rose / Critical */
+@define-color base0D      #888888; /* Neutral Steel */
 
 /* =============================================================================
- * BASE STYLES & ANIMATIONS
+ * GLOBAL HUD LAYOUT
  * ========================================================================== */
-@keyframes blink-warning {
-    70% { color: @bg_dark; }
-    to { color: @bg_dark; background-color: @orange; }
-}
-
-@keyframes blink-critical {
-    70% { color: @bg_dark; }
-    to { color: @fg; background-color: @red; }
-}
-
 * {
     border: none;
     border-radius: 0px;
-    font-family: "ProFont IIx Nerd Font Mono", "monospace";
-    font-size: 13pt;
+    font-family: "Hurmit Nerd Font Mono", "Hermit Nerd Font", "monospace";
+    font-size: 11pt;
     font-weight: bold;
     min-height: 0;
 }
 
-#waybar {
-    background: @bg;
-    color: @fg;
+/* Make the main bar completely transparent so modules look floating */
+window#waybar {
+    background: transparent;
+    color: @base05;
 }
 
-/* Common module structure */
-#battery, #clock, #cpu, #custom-layout, #memory, #mode, #network, 
-#pulseaudio, #temperature, #custom-alsa, #custom-pacman, #custom-weather, 
-#custom-gpu, #custom-playerctl, #tray, #backlight, #language, 
-#custom-cpugovernor, #custom-scratchpad-indicator, #idle_inhibitor, #bluetooth {
-    padding: 0.2em 0.8em;
-    margin: 4px 2px;
-    border-radius: 4px;
+/* Global style for EVERY component module */
+#battery, #clock-time, #clock-date, #cpu, #memory, #network, 
+#pulseaudio, #temperature, #custom-playerctl, #custom-scratchpad-indicator, #tray {
+    background: rgba(18, 18, 18, 0.85); /* Semi-transparent black glass */
+    color: @base05;
+    padding: 0 12px;
+    margin: 6px 3px;
+    
+    /* Cyberpunk industrial borders */
+    border-top: 2px solid @base03;
+    border-bottom: 2px solid @base02;
 }
 
 /* =============================================================================
- * WORKSPACES (The requested Workspace Bar)
+ * WORKSPACES (Modular Segmented Blocks)
  * ========================================================================== */
 #workspaces {
-    background-color: transparent;
-    padding: 0;
+    background: transparent;
+    margin: 6px 3px;
 }
 
 #workspaces button {
-    background: @bg_alt;
-    color: @fg_faded;
-    padding: 0.2em 0.8em;
-    margin: 4px 2px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    background: rgba(18, 18, 18, 0.85);
+    color: @base04;
+    padding: 0 10px;
+    margin-right: 3px;
+    border-top: 2px solid @base03;
+    border-bottom: 2px solid @base02;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Focused / Active Workspace -> Very Light Yellow */
-#workspaces button.focused {
-    background-color: @light_yellow;
-    color: @bg_dark;
-}
-
-#workspaces button.urgent {
-    background-color: @red;
-    color: @bg_dark;
+/* Active Workspace: Glows White/Silver with an invert style */
+#workspaces button.focused,
+#workspaces button.focused-workspace {
+    background: @base05;
+    color: @base00;
+    border-top: 2px solid @base05;
+    border-bottom: 2px solid @base05;
 }
 
 #workspaces button:hover {
-    background-color: @blue;
-    color: @bg_dark;
+    background: @base02;
+    color: @base05;
+    border-top: 2px solid @base0D;
+}
+
+#workspaces button.urgent {
+    background: @base0B;
+    color: @base00;
+    border-top: 2px solid @base0B;
 }
 
 /* =============================================================================
- * MODULE COLOR ASSIGNMENTS
+ * LEFT & CENTER MODULE REFINEMENTS
  * ========================================================================== */
-/* Left Side */
-#custom-pacman { background: @aqua; color: @bg_dark; }
-#custom-scratchpad-indicator { background: @magenta; color: @bg_dark; }
-#custom-playerctl { color: @fg; background: transparent; }
-#custom-playerctl.paused { color: @fg_faded; }
-
-/* Center Clocks */
-#clock.time { background: @light_yellow; color: @bg_dark; }
-#clock.date { background: @bg_alt; color: @fg; }
-
-/* Right Side Cluster */
-#pulseaudio { background: @blue; color: @bg_dark; }
-#pulseaudio.muted { background: @bg_alt; color: @red; }
-
-#network { background: @bg_alt; color: @fg_faded; }
-#network.disconnected { background: @red; color: @bg_dark; }
-
-#cpu { background: @orange; color: @bg_dark; }
-#memory { background: @yellow; color: @bg_dark; }
-#temperature { background: @aqua; color: @bg_dark; }
-#battery { background: @green; color: @bg_dark; }
-#tray { background: @bg_alt; color: @fg; }
-
-/* Hardware States & Animations */
-#memory.critical, #cpu.critical, #temperature.critical, #battery.critical {
-    background: @red;
-    color: @bg_dark;
+#custom-scratchpad-indicator {
+    color: @base0B;
+    border-top-color: @base0B;
 }
+
+#custom-playerctl {
+    background: transparent;
+    border: none;
+    color: @base04;
+}
+
+/* Center Clock HUD - Separated visually */
+#clock-time {
+    color: @base05;
+    border-top: 2px solid @base05; /* Brighter top border for structural focus */
+    font-size: 12pt;
+}
+
+#clock-date {
+    color: @base04;
+    font-size: 10pt;
+}
+
+/* =============================================================================
+ * RIGHT HARDWARE STRIP (Accentuated Outlines)
+ * ========================================================================== */
+#pulseaudio { border-top-color: @base0D; }
+#pulseaudio.muted { color: @base04; border-top-color: @base03; }
+
+#network { border-top-color: @base02; color: @base04; }
+#network.disconnected { color: @base0B; border-top-color: @base0B; }
+
+#cpu { border-top-color: @base08; }
+#memory { border-top-color: @base08; }
+#temperature { border-top-color: @base0D; }
+
+/* Battery states changing borders dynamically */
+#battery { border-top-color: @base08; }
+#battery.charging, #battery.plugged { color: @base05; border-top-color: @base05; }
+
+/* =============================================================================
+ * SYSTEM ALERTS & ANIMATIONS
+ * ========================================================================== */
 #memory.warning, #cpu.warning, #temperature.warning, #battery.warning {
-    background: @orange;
-    color: @bg_dark;
-}
-#battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-}
-#battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
+    border-top: 2px solid @base0A;
+    color: @base0A;
 }
 
+#memory.critical, #cpu.critical, #temperature.critical, #battery.critical {
+    border-top: 2px solid @base0B;
+    color: @base0B;
+    animation: pulse-hud-alert 1.5s infinite alternate;
+}
+
+@keyframes pulse-hud-alert {
+    from { background: rgba(18, 18, 18, 0.85); }
+    to { background: rgba(160, 102, 102, 0.3); } /* Flashes a warning red-tint */
+}
