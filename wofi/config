@@ -1,0 +1,17 @@
+width=400
+height=320
+location=center
+show=drun
+prompt= Search...
+filter_rate=100
+allow_markup=true
+no_actions=true
+halign=fill
+orientation=vertical
+content_type=application/x-desktop
+
+# Crucial layout rules
+allow_images=true
+show_indicators=false
+hide_scroll=true
+insensitive=true
