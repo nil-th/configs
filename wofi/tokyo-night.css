@@ -1,0 +1,99 @@
+/* =============================================================================
+   TOKYO NIGHT COMPACT TRANSPARENT PALETTE
+   ============================================================================= */
+/* Using rgba to allow your wallpaper/windows to blur or show through */
+@define-color bg          rgba(26, 27, 38, 0.85);   /* Transparent storm blue */
+@define-color bg-dark     rgba(21, 22, 30, 0.85);   /* Transparent darker backing */
+@define-color selection   rgba(51, 70, 124, 0.90);  /* Solid navy selection block */
+@define-color fg          #c0caf5;                  /* Stark readable text */
+@define-color comment     #414868;                  /* Muted placeholder */
+@define-color blue        #7aa2f7;                  /* Accent border line */
+
+/* Core Layout - Transparent backdrop with explicit Hermit font */
+window {
+    margin: 0px;
+    padding: 8px;
+    background-color: @bg-dark;
+    color: @fg;
+    font-family: "Hurmit Nerd Font", "Hermit Nerd Font", "monospace";
+    font-size: 13px;
+    font-weight: bold;
+    border: 2px solid @selection;
+    border-radius: 4px;
+}
+
+/* Base Frame container wrapper */
+#outer-box {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+/* =============================================================================
+   COMPACT SEARCH FIELD
+   ============================================================================= */
+#input {
+    margin: 0px 0px 6px 0px;
+    padding: 6px 10px;
+    border: 1px solid @selection;
+    border-radius: 4px;
+    background-color: @bg;
+    color: @fg;
+    caret-color: @blue;
+}
+
+#input image {
+    color: @blue;
+    margin-right: 6px;
+}
+
+/* =============================================================================
+   TIGHT LIST STRUCTURE (App Icons + Text)
+   ============================================================================= */
+#scroll {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+#text {
+    margin: 0px;
+    padding: 0px;
+    color: inherit;
+}
+
+/* Individual Application Rows */
+#entry {
+    margin: 1px 0px;
+    padding: 4px 8px; 
+    border: none;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+/* Default / Inactive list state */
+#entry:unfocused {
+    background-color: transparent;
+    color: @fg;
+}
+
+/* Hover Response */
+#entry:hover {
+    background-color: @bg;
+    color: @blue;
+}
+
+/* =============================================================================
+   SELECTED / ACTIVE WINDOW STATE
+   ============================================================================= */
+#entry:selected {
+    background-color: @selection;
+    color: @fg;
+    border-left: 3px solid @blue; 
+}
+
+/* Icon / Images scaling inside rows */
+#img {
+    margin-right: 8px;
+    background-color: transparent;
+}
