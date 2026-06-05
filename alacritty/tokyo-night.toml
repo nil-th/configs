@@ -1,0 +1,37 @@
+[colors]
+# Default colors
+[colors.primary]
+background = '#1a1b26' # Deep storm blue
+foreground = '#c0caf5' # Crisp light blue-white
+
+# Normal colors
+[colors.normal]
+black   = '#15161e' # Dark shade for black
+red     = '#f7768e' # Neon red/pink
+green   = '#9ece6a' # Soft bright green
+yellow  = '#e0af68' # Warm yellow/amber
+blue    = '#7aa2f7' # Tokyo blue
+magenta = '#bb9af7' # Cyber purple
+cyan    = '#7dcfff' # Electric cyan
+white   = '#a9b1d6' # Muted text white
+
+# Bright colors
+[colors.bright]
+black   = '#414868' # Bright gray/blue (Comments)
+red     = '#f7768e'
+green   = '#9ece6a'
+yellow  = '#e0af68'
+blue    = '#7aa2f7'
+magenta = '#bb9af7'
+cyan    = '#7dcfff'
+white   = '#c0caf5'
+
+# Cursor overrides
+[colors.cursor]
+text   = '#1a1b26' # Inverted background color inside cursor
+cursor = '#c0caf5' # Light glowing cursor block
+
+# Selection overrides
+[colors.selection]
+text       = 'CellForeground' # Dynamically use the text's original color
+background = '#33467c'       # Distinct navy selection highlight block
