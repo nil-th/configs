@@ -2,73 +2,97 @@
     "layer": "top",
     "position": "top",
     "height": 34,
-    "modules-left": ["sway/workspaces", "custom-scratchpad-indicator", "custom-playerctl"],
-    "modules-center": ["clock#time", "clock#date"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "battery", "tray"],
+    "spacing": 4,
 
-    "sway/workspaces": {
-        "disable-scroll": false,
-        "all-outputs": true,
-        "format": " {name} ",
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": []
-        }
-    },
+    "modules-left": [
+        "sway/workspaces",
+        "i3/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "tray",
+        "custom/suspend",
+        "custom/power"
+    ],
 
-    // --- Custom Modules ---
-    "custom-scratchpad-indicator": {
-        "interval": 3,
-        "return-type": "json",
-        "exec": "swaymsg -t get_tree | jq --unbuffered --compact-output '(recurse(.nodes[]) | select(.name == \"__i3_scratch\") | .focus[-1]) as $id | [recurse(.nodes[], .floating_nodes[]) | select(.id == $id)] | length'",
-        "format": " PKG: {} ",
-        "tooltip": false
-    },
-    "custom-playerctl": {
-        "format": " 👁  {} ",
-        "return-type": "json",
-        "max-length": 40,
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}} : {{status}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-        "on-click": "playerctl play-pause",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
+    // =============================================================================
+    // MODULE DEFINITIONS
+    // =============================================================================
+    
+    "clock": {
+        "timezone": "local",
+        "format": "  {:%H:%M  󰃭  %a, %b %d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
 
-    // --- Core Modules (Refactored for Minimalist Vibe) ---
-    "clock#time": {
-        "format": " {:%H:%M} "
-    },
-    "clock#date": {
-        "format": " {:%Y.%m.%d} " // Switched to dot-notated data string
-    },
-    "pulseaudio": {
-        "format": " VOL // {volume}% ",
-        "format-muted": " VOL // MUTE "
-    },
-    "network": {
-        "format-wifi": " NET // {essid} ",
-        "format-disconnected": " NET // DOWN "
-    },
     "cpu": {
-        "format": " CPU // {usage}% "
+        "format": "  {usage}%",
+        "interval": 2
     },
+
     "memory": {
-        "format": " MEM // {percentage}% "
+        "format": "  {}%",
+        "interval": 2
     },
+
     "temperature": {
         "critical-threshold": 80,
-        "format": " TMP // {temperatureC}°C "
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C"
     },
+
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
-        "format": " SYS // {capacity}% ",
-        "format-charging": " CHG // {capacity}% ",
-        "format-plugged": " AC // {capacity}% ",
-        "format-alt": " REM // {time} "
+        "format": "{icon}  {percentage}%",
+        "format-charging": "󱐋 {percentage}%",
+        "format-plugged": "  {percentage}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "network": {
+        "format-wifi": "   {essid}",
+        "format-ethernet": "󰈀  {ipaddr}/{cidr}",
+        "format-disconnected": "󰤮  Disconnected"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰝟  Muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    // System Tray App Indicators Module
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+
+    // Custom System Suspend Button
+    "custom/suspend": {
+        "format": " 󰤄 ",
+        "on-click": "systemctl suspend",
+        "tooltip-format": "Suspend System"
+    },
+
+    // Custom System Power Off / Context Menu Module
+    "custom/power": {
+        "format": "  ",
+        "on-click": "systemctl poweroff",
+        "on-click-right": "systemctl reboot",
+        "tooltip-format": "Left-click: Power Off\nRight-click: Reboot"
     }
 }
