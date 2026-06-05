@@ -31,7 +31,7 @@ input "type:touchpad" {
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/host00/Pictures/wallpapers/Delight_2-Cosmic.jpg fill
+output * bg /home/host01/Documents/wallpapers/tokyonight-wallpapers/tokyonight_original.png fill
 #
 # Example configuration:
 #
@@ -76,7 +76,7 @@ output * bg /home/host00/Pictures/wallpapers/Delight_2-Cosmic.jpg fill
     bindsym $mod+Return exec $term
 
     # Start Firefox
-		bindsym $mod+Shift+w exec firefox
+		bindsym $mod+Shift+w exec librewolf 
 
 		# Start Thunar
 		bindsym $mod+Shift+f exec thunar
@@ -230,25 +230,40 @@ gaps inner 5
 gaps outer 5
 smart_gaps off
 smart_borders on
-default_border pixel 5
 
 #Transparency
 #for_window [app_id="kitty"] opacity 0.8
 
-# Gruvbox Blue and Magenta definitions
-set $blue    #83a598
-set $magenta #d3869b
-set $bg      #282828
-set $muted   #504945
+# =============================================================================
+# TOKYO NIGHT COLOR PALETTE FOR SWAY
+# =============================================================================
+set $bg-dark     #15161e
+set $bg          #1a1b26
+set $selection   #33467c
+set $fg          #c0caf5
+set $comment     #414868
+set $blue        #7aa2f7
+set $red         #f7768e
+set $purple      #bb9af7
 
-# Apply colors to borders
-# class                 border  backgr. text    indicator child_border
-client.focused          $blue   $blue   $bg     $magenta  $blue
-client.focused_inactive $muted  $muted  #a89984 $muted    $muted
-client.unfocused        $bg     $bg     #7c6f64 $bg       $bg
-client.urgent           $magenta $magenta $bg    $magenta  $magenta
+# =============================================================================
+# WINDOW BORDER COLORS
+# syntax: class                 border     backgrg.   text       indicator  child_border
+# =============================================================================
+client.focused                  $blue      $selection $fg        $purple    $blue
+client.focused_inactive         $comment   $bg        $comment   $bg-dark   $comment
+client.unfocused                $bg-dark   $bg        $comment   $bg-dark   $bg-dark
+client.urgent                   $red       $red       $bg-dark   $red       $red
+client.placeholder              #000000    #000000    #ffffff    #000000    #000000
+
+# =============================================================================
+# BORDER SETTINGS
+# =============================================================================
+# Set thin, clean borders (2 pixels wide)
+default_border pixel 2
+default_floating_border pixel 2
 
 # Border thickness
-default_border pixel 2
+default_border pixel 3
 
 include /etc/sway/config.d/*
